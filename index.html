@@ -186,7 +186,7 @@
             font-weight: 400;
         }
         
-        .section-header p {
+        .section-header p.description {
             max-width: 800px;
             margin: 0 auto;
             color: #bbb;
@@ -207,6 +207,8 @@
             box-shadow: 0 8px 30px rgba(0,0,0,0.4);
             transition: var(--transition);
             border: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            flex-direction: column;
         }
         
         .info-card:hover {
@@ -225,6 +227,7 @@
         .info-card ul {
             list-style: none;
             padding-left: 0;
+            flex-grow: 1;
         }
         
         .info-card li {
@@ -366,7 +369,7 @@
     <section class="hero">
         <div class="container">
             <h1>The Constructed Ideal</h1>
-            <p>A comparative analysis of beauty standards in Thailand and the West, based on the research "The Constructed Ideal".</p>
+            <p>A cross-cultural analysis of beauty standards, their impact, and their evolution, based on the research presentation "Beauty Standard Presentation".</p>
             <a href="#meaning" class="btn">Explore the Details</a>
         </div>
     </section>
@@ -377,38 +380,38 @@
             <div class="section-header">
                 <h3 class="subtitle">Detail 1</h3>
                 <h2>The Meaning of a Beauty Standard</h2>
-                <p>Beauty standards are culturally specific constructs, not universal absolutes. A comparison of Thai and Western ideals reveals vastly different definitions of beauty, while evolutionary psychology suggests some traits, like facial symmetry, may have universal appeal as indicators of health.</p>
+                <p class="description">A beauty standard is a socially constructed set of norms that dictates what a culture values as physically attractive. These standards function as a form of social and cultural capital, where conforming can provide distinct advantages.</p>
             </div>
             <div class="info-grid">
                 <div class="info-card">
                     <h3><i class="fas fa-yin-yang"></i>Thai Ideals</h3>
                     <ul>
-                        <li><strong>Skin Tone:</strong> A luminous, "white-pink" complexion is paramount, historically linked to high social class and a life of leisure indoors.</li>
-                        <li><strong>Facial Structure:</strong> An oval face with a high nose bridge and large eyes is preferred, influenced by both Eurocentric and Korean "Hallyu" wave ideals.</li>
-                        <li><strong>Body Shape:</strong> The ideal is "shapely" but slender, defined by full breasts and a small waist, on a smaller frame than Western ideals.</li>
-                        <li><strong>Cultural Link:</strong> Appearance is tied to `rak saa naa` ("protecting face"), where beauty reflects one's social honor and moral standing.</li>
+                        <li><strong>Skin:</strong> Prioritizes fair/white skin, historically linked to class and reinforced by colonial legacies and the modern Korean Wave.</li>
+                        <li><strong>Frame:</strong> An extremely thin and delicate frame is considered ideal.</li>
+                        <li><strong>Face:</strong> A V-shaped jawline with a high nose bridge is sought after.</li>
+                        <li><strong>Culture:</strong> Deeply connected to 'rak saa naa' (saving face), where appearance reflects one's honor and social respectability.</li>
                     </ul>
                 </div>
                 <div class="info-card">
                     <h3><i class="fas fa-monument"></i>Western Ideals</h3>
                     <ul>
-                        <li><strong>Skin Tone:</strong> Varies with trends, but a "healthy tan" is often prized, symbolizing leisure time for travel and sports.</li>
-                        <li><strong>Facial Structure:</strong> High cheekbones and a small nose are common features within a dominant Eurocentric template.</li>
-                        <li><strong>Body Shape:</strong> Historically fluid, the modern ideal is often thin but curvaceous ("slim-thick"), associating a low body weight with success and self-discipline.</li>
-                        <li><strong>Cultural Link:</strong> Beauty is often framed as a form of economic and social capital, linked to individual success and life opportunities.</li>
+                        <li><strong>Skin:</strong> Often favors a sun-kissed or tanned complexion, signifying health and an active, affluent lifestyle.</li>
+                        <li><strong>Frame:</strong> An athletic or curvaceous body type is currently popular.</li>
+                        <li><strong>Face:</strong> Strong features like high cheekbones are often valued.</li>
+                        <li><strong>Culture:</strong> Linked to individualism and self-expression, where appearance is a tool for personal branding.</li>
                     </ul>
                 </div>
                 <div class="info-card">
                     <h3><i class="fas fa-dna"></i>Universal Ideals?</h3>
                     <ul>
-                        <li><strong>Symmetry:</strong> Evolutionary psychology suggests a universal preference for facial symmetry, as it may be an honest indicator of genetic health and developmental stability.</li>
-                        <li><strong>Averageness:</strong> Some research suggests that facial "averageness"—the degree to which a face approximates the mathematical average of a population—is a more robust predictor of beauty than specific ratios.</li>
-                        <li><strong>Critique:</strong> These biological theories are criticized for being overly reductive and failing to account for the vast and powerful influence of cultural and historical factors.</li>
+                        <li><strong>Symmetry:</strong> An evolutionary preference for facial and bodily symmetry, as it may signal health and genetic fitness.</li>
+                        <li><strong>Proportion:</strong> Some theories suggest that proportions aligning with the Golden Ratio are universally perceived as beautiful.</li>
+                        <li><strong>Health Cues:</strong> Clear, unblemished skin and other signs of youthfulness are attractive across cultures as they signal health and fertility.</li>
                     </ul>
                 </div>
             </div>
             <div class="reference">
-                <p>Information sourced from "The Constructed Ideal: A Comparative Analysis of Beauty Standards in Thailand and the West".</p>
+                <p>Information sourced from research cited in "Beauty Standard Presentation" (Pongsapich & Bunjongjit, 2013; Swami, 2025; Rhodes, 2011; etc.).</p>
             </div>
         </section>
 
@@ -417,24 +420,24 @@
             <div class="section-header">
                 <h3 class="subtitle">Detail 2</h3>
                 <h2>Historical Evolution in Thailand</h2>
-                <p>Beauty standards in Thailand are not static. Each generation has redefined the ideal based on their unique social and technological environment, moving from traditional values to a digitally-native paradox of authenticity and artificial enhancement.</p>
+                <p class="description">Beauty standards in Thailand are not static. Each generation has redefined the ideal based on their unique social and technological environment, moving from traditional values to a digitally-native paradox of authenticity and artificial enhancement.</p>
             </div>
             <div class="timeline">
                 <div class="timeline-card">
-                    <h3>Generation X (born 1965-1980)</h3>
-                    <p><strong>The Bridge Generation:</strong> Coming of age during Thailand's economic boom and the rise of Western media, this cohort represents a bridge between traditional values and global trends. Now in middle age, they are focused on a "healthy aging" philosophy and preventative wellness.</p>
+                    <h3>Generation X (The Bridge Generation)</h3>
+                    <p>Raised with traditional values but were the first to be widely exposed to Western media. Their standards blend Thai modesty with the "supermodel" aesthetic, amplifying the preference for fair skin. They now focus on "healthy aging."</p>
                 </div>
                 <div class="timeline-card">
-                    <h3>Generation Y / Millennials (born 1981-1996)</h3>
-                    <p><strong>The Beauty Activists:</strong> As a core consumer group, Millennials are more discerning and purpose-driven. They demand diversity and ethical production from brands, using social media to voice their opinions and champion "self-love" and "rejuvenation" on their own terms.</p>
+                    <h3>Generation Y (The K-Wave Cohort)</h3>
+                    <p>Grew up with the internet and the Korean Wave, which reinforced ideals of extremely fair "glass skin" and a delicate V-shaped face. They are digital adopters who research beauty choices online.</p>
                 </div>
                 <div class="timeline-card">
-                    <h3>Generation Z (born 1997-2012)</h3>
-                    <p><strong>The Digital Natives:</strong> This generation embodies a paradox. They are the most vocal champions of authenticity and inclusivity, yet are also the most accepting of artificial enhancement, from digital filters to cosmetic surgery. For them, authenticity is the freedom to construct their desired identity using all available tools.</p>
+                    <h3>Generation Z (The Authentic Artificialists)</h3>
+                    <p>This generation embodies a paradox. They champion diversity and authenticity, yet are the most immersed in a digital culture of perfection, with a high demand for "speedy beauty" and openness to cosmetic procedures. For them, authenticity is the freedom to construct their ideal self by any means.</p>
                 </div>
             </div>
              <div class="reference">
-                <p>Information sourced from "The Constructed Ideal: A Comparative Analysis of Beauty Standards in Thailand and the West".</p>
+                <p>Information sourced from research cited in "Beauty Standard Presentation" (Mintel, 2024; Meiyume, 2025; etc.).</p>
             </div>
         </section>
 
@@ -443,37 +446,27 @@
             <div class="section-header">
                 <h3 class="subtitle">Detail 3</h3>
                 <h2>The Importance of Beauty Standards</h2>
-                <p>The pressure to conform to beauty ideals has profound psychological and social consequences. It directly impacts mental health and creates tangible economic hierarchies through a form of prejudice known as "lookism."</p>
+                <p class="description">The pressure to conform to beauty ideals has profound psychological and social consequences. It directly impacts mental health and creates tangible economic hierarchies through a form of prejudice known as "lookism."</p>
             </div>
             <div class="info-grid">
                 <div class="info-card">
                     <h3><i class="fas fa-brain"></i>Psychological Effects</h3>
-                    <p>The gap between idealized images and reality fosters a climate of "normative discontent," leading to significant mental health challenges.</p>
-                    <ul>
-                        <li><strong>Body Dissatisfaction:</strong> Studies among Thai female university students show a prevalence rate of <strong>19.24%</strong>.</li>
-                        <li><strong>Disordered Eating:</strong> Research in Bangkok found that <strong>23.8%</strong> of senior high school girls exhibited problematic eating attitudes.</li>
-                        <li><strong>Self-Objectification:</strong> Constant body surveillance and shame are significant predictors of eating disorders among Thai students.</li>
-                    </ul>
+                    <p>The pressure to conform to unrealistic ideals is a major contributor to negative body image, low self-esteem, anxiety, and depression, and is a significant risk factor for clinical conditions like eating disorders and Body Dysmorphic Disorder (BDD).</p>
                 </div>
                 <div class="info-card">
                     <h3><i class="fas fa-briefcase"></i>Influence on Reputation & Jobs</h3>
-                    <p>"Lookism," or appearance-based discrimination, is a pervasive issue with severe consequences for employment and social standing.</p>
-                    <ul>
-                        <li><strong>Hiring Bias:</strong> It is common for Thai recruiters to request photos with job applications, often masking appearance-based bias.</li>
-                        <li><strong>Transgender Discrimination:</strong> A 2018 World Bank survey found that <strong>77%</strong> of transgender people in Thailand reported being denied jobs due to their gender identity.</li>
-                        <li><strong>Relationship Strategy:</strong> Some Thai women who do not fit local ideals strategically pursue relationships with Western men to bypass restrictive local standards.</li>
-                    </ul>
+                    <p>"Lookism" and the "halo effect" create a "beauty premium." Attractive people are more likely to be hired and promoted, earning an average of <strong>$230,000</strong> more over a lifetime. In Thailand, this is amplified by the concept of "saving face," making appearance-based discrimination a profound social blow.</p>
                 </div>
             </div>
             <div class="chart-container">
                 <div class="chart-header">
                     <h3>Mental Health Impact in Thailand</h3>
-                    <p>Prevalence rates of key issues among Thai youth and young adults.</p>
+                    <p>Prevalence rates of key issues among Thai youth and young adults, illustrating the psychological cost of beauty standards.</p>
                 </div>
                 <div id="impact-chart" class="chart"></div>
             </div>
              <div class="reference">
-                <p>Information and statistics sourced from "The Constructed Ideal: A Comparative Analysis of Beauty Standards in Thailand and the West".</p>
+                <p>Information sourced from research cited in "Beauty Standard Presentation" and "The Constructed Ideal" (Adomaitis & Raskin, 2015; NEDA, etc.).</p>
             </div>
         </section>
 
@@ -482,30 +475,20 @@
             <div class="section-header">
                 <h3 class="subtitle">Detail 4</h3>
                 <h2>Modern Challenges</h2>
-                <p>The digital age has introduced potent new challenges. Photo editing normalizes digital self-alteration, creating an "edited self" that fuels anxiety, while social media platforms have been linked to a rise in mental health issues among teenagers.</p>
+                <p class="description">The digital age has introduced potent new challenges. Photo editing normalizes digital self-alteration, creating an "edited self" that fuels anxiety, while social media platforms have been linked to a rise in mental health issues among teenagers.</p>
             </div>
              <div class="info-grid">
                 <div class="info-card">
                     <h3><i class="fas fa-magic"></i>Photo Editing & Filters</h3>
-                    <p>The ability to digitally alter one's appearance with a single tap has created a dangerous gap between the real and idealized self.</p>
-                    <ul>
-                        <li><strong>The "Edited Self":</strong> Creating a perfected virtual avatar is linked to increased appearance anxiety and lower self-esteem.</li>
-                        <li><strong>Self-Objectification:</strong> The act of editing enhances self-objectification, where one becomes a critical observer of their own "flaws."</li>
-                        <li><strong>Feedback Loop:</strong> Positive reactions to filtered photos reinforce the belief that the edited version is superior, deepening dissatisfaction with one's real appearance.</li>
-                    </ul>
+                    <p>The rise of "digital dysmorphia" is driven by the gap between one's real and digitally perfected self. The most damaging comparison is often with one's <strong>own filtered selfie</strong>, which reinforces the message that the authentic self is "not good enough" and is linked to lower self-esteem.</p>
                 </div>
                 <div class="info-card">
                     <h3><i class="fas fa-mobile-alt"></i>Social Media & Teen Mental Health</h3>
-                    <p>In a highly connected nation like Thailand, the link between heavy social media use and negative mental health outcomes is a major concern.</p>
-                    <ul>
-                        <li><strong>High Usage:</strong> Thai youth spend over 11 hours a day online, with social media being the most popular activity.</li>
-                        <li><strong>Mental Health Crisis:</strong> A survey by Thailand's Dept. of Mental Health found that among teen users, <strong>10.28%</strong> were at risk of depression and <strong>17.4%</strong> were at risk of self-harm.</li>
-                        <li><strong>Toxic Advice:</strong> As your query noted, around half of teenage girls report that toxic beauty advice on social media is a direct cause of low self-esteem.</li>
-                    </ul>
+                    <p>Adolescents are uniquely vulnerable. Around <strong>half of teenage girls</strong> report that toxic beauty advice on social media causes low self-esteem. A 2023 APA study found that when teens reduced social media use by <strong>50%</strong>, they saw significant improvements in their body image.</p>
                 </div>
             </div>
              <div class="reference">
-                <p>Information and statistics sourced from "The Constructed Ideal: A Comparative Analysis of Beauty Standards in Thailand and the West".</p>
+                <p>Information sourced from research cited in "Beauty Standard Presentation" (Tiggemann & Anderberg, 2023; APA, 2023; etc.).</p>
             </div>
         </section>
 
@@ -514,30 +497,20 @@
             <div class="section-header">
                 <h3 class="subtitle">Detail 5</h3>
                 <h2>Future Directions</h2>
-                <p>The path forward requires a paradigm shift away from a single, oppressive ideal. This change is being driven by youth-led activism and can be solidified through systemic educational interventions that foster critical thinking and self-compassion.</p>
+                <p class="description">The path forward requires a paradigm shift away from a single, oppressive ideal. This change is being driven by youth-led activism and can be solidified through systemic educational interventions that foster critical thinking and self-compassion.</p>
             </div>
              <div class="info-grid">
                 <div class="info-card">
-                    <h3><i class="fas fa-lightbulb"></i>What's Going to Change?</h3>
-                    <p>A cultural counter-current is emerging, challenging old norms and advocating for a more inclusive definition of beauty.</p>
-                    <ul>
-                        <li><strong>Youth Activism:</strong> Thai Gen Z are "Beauty Activists" who use their economic power and social media presence to demand diversity and equality from brands.</li>
-                        <li><strong>Body Positivity:</strong> The global movement is gaining traction, encouraging a focus on health and strength over appearance, supported by feminist and LGBTQ+ groups.</li>
-                        <li><strong>Brand Accountability:</strong> Campaigns like Dove's #LetHerGrow, which successfully challenged forced haircuts in Thai schools, prove that purpose-driven marketing can create real social change.</li>
-                    </ul>
+                    <h3><i class="fas fa-lightbulb"></i>What is Going to Change?</h3>
+                    <p>A cultural counter-current is emerging, with movements like <strong>body positivity</strong> challenging the idea of a single beauty ideal. The future is a shift toward <strong>pluralistic, authentic human expression</strong>, moving from valuing perfection to valuing authenticity.</p>
                 </div>
                 <div class="info-card">
                     <h3><i class="fas fa-school"></i>The Power of Education</h3>
-                    <p>Education is the most fundamental tool for dismantling harmful standards and fostering a healthier cultural paradigm.</p>
-                    <ul>
-                        <li><strong>Critical Media Literacy:</strong> Teaching students to deconstruct media messages and recognize digital manipulation is proven to improve body image.</li>
-                        <li><strong>Fostering Self-Compassion:</strong> A curriculum rooted in self-compassion is particularly resonant in the Thai cultural context and can weaken the damaging link between appearance and self-worth.</li>
-                        <li><strong>A Paradigm Shift:</strong> The goal is not to eliminate beauty standards, but to shift from a singular ideal to a celebration of pluralistic, authentic human expression.</li>
-                    </ul>
+                    <p>Education is the most critical tool for change. This involves teaching <strong>critical media literacy</strong> (deconstructing ads, recognizing digital manipulation) and providing historical context on how racist and classist standards were constructed. The goal is to empower youth to resist harmful societal systems.</p>
                 </div>
             </div>
              <div class="reference">
-                <p>Information sourced from "The Constructed Ideal: A Comparative Analysis of Beauty Standards in Thailand and the West".</p>
+                <p>Information sourced from research cited in "Beauty Standard Presentation" (Align Platform, 2019; CREAN Society, 2024; etc.).</p>
             </div>
         </section>
     </div>
@@ -547,7 +520,7 @@
         <div class="container footer-content">
              <div class="footer-section">
                 <h3>Beauty Explorer</h3>
-                <p>A resource for understanding how beauty standards vary across cultures, evolve over time, and impact individuals, based on the research "The Constructed Ideal".</p>
+                <p>A resource for understanding how beauty standards vary across cultures, evolve over time, and impact individuals.</p>
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
@@ -569,10 +542,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             // --- DATA FOR CHARTS ---
             const impactData = [
-                { issue: "Body Dissatisfaction (Uni Students)", value: 19.24 },
-                { issue: "Problematic Eating (High School)", value: 23.8 },
-                { issue: "Risk of Depression (Teens)", value: 10.28 },
-                { issue: "Risk of Self-Harm (Teens)", value: 17.4 }
+                { issue: "Body Dissatisfaction (University Students)", value: 19.24 },
+                { issue: "Problematic Eating (High School Students)", value: 23.8 },
+                { issue: "Risk of Depression (Teens on DMH App)", value: 10.28 },
+                { issue: "Risk of Self-Harm (Teens on DMH App)", value: 17.4 }
             ];
 
             // --- D3 CHART DRAWING FUNCTIONS ---
@@ -596,9 +569,9 @@
                 const container = d3.select("#impact-chart");
                 container.html("");
                 
-                const margin = {top: 50, right: 30, bottom: 120, left: 60},
+                const margin = {top: 50, right: 30, bottom: 150, left: 60},
                       width = container.node().getBoundingClientRect().width - margin.left - margin.right,
-                      height = 350 - margin.top - margin.bottom;
+                      height = 400 - margin.top - margin.bottom;
                 
                 const svg = container.append("svg")
                     .attr("width", width + margin.left + margin.right)
