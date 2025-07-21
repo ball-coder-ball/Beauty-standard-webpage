@@ -3,20 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beauty Standards Explorer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Beauty Standards Explorer | Scientific Presentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
         :root {
-            --primary: #6a0dad;
-            --secondary: #ff6b6b;
-            --accent: #4ecdc4;
-            --dark: #121212;
-            --darker: #0a0a0a;
-            --light: #f8f9fa;
-            --semi-dark: rgba(30, 30, 30, 0.8);
+            --primary: #8a4baf;      /* Deep purple from history timeline */
+            --secondary: #d6b8e0;    /* Soft lavender from wellness branding */
+            --accent: #ff99cc;       /* Gentle pink from wellness branding */
+            --dark: #1a1423;         /* Dark purple base */
+            --darker: #120c18;       /* Darker purple for backgrounds */
+            --light: #f8f5fa;        /* Soft off-white */
+            --semi-dark: rgba(35, 25, 45, 0.95);
+            --card-bg: rgba(45, 35, 55, 0.95);
             --transition: all 0.3s ease;
+            --chart-primary: linear-gradient(135deg, #8a4baf, #6a2d8f);
+            --chart-secondary: linear-gradient(135deg, #ff99cc, #e57ca6);
+            --chart-accent: linear-gradient(135deg, #d6b8e0, #b89bc5);
         }
         
         * {
@@ -27,10 +31,11 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--darker);
+            background: linear-gradient(135deg, var(--darker) 0%, #241a30 100%);
             color: var(--light);
             line-height: 1.6;
             overflow-x: hidden;
+            background-attachment: fixed;
         }
         
         h1, h2, h3, h4, h5, h6 {
@@ -46,13 +51,14 @@
         
         /* Header Styles */
         header {
-            background-color: var(--dark);
+            background-color: rgba(30, 20, 40, 0.95);
             padding: 1.2rem 0;
             position: sticky;
             top: 0;
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0,0,0,0.4);
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
         }
         
         .header-content {
@@ -69,6 +75,9 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         nav ul {
@@ -87,10 +96,12 @@
             transition: var(--transition);
             font-size: 1.1rem;
             position: relative;
+            background: rgba(120, 90, 150, 0.2);
         }
         
         nav a:hover, nav a.active {
             color: var(--accent);
+            background: rgba(120, 90, 150, 0.4);
         }
         
         nav a::after {
@@ -110,20 +121,34 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.9)), 
+            background: linear-gradient(135deg, rgba(18, 12, 24, 0.9) 0%, rgba(40, 25, 55, 0.9) 100%), 
                          url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
             text-align: center;
-            padding: 6rem 1rem;
+            padding: 8rem 1rem 6rem;
             margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, var(--darker) 150%);
+            pointer-events: none;
         }
         
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.4);
             line-height: 1.2;
+            position: relative;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.6);
         }
         
         .hero p {
@@ -132,11 +157,12 @@
             margin: 0 auto 3rem;
             color: #e0e0e0;
             font-weight: 300;
+            position: relative;
         }
         
         .btn {
             display: inline-block;
-            background: linear-gradient(135deg, var(--primary), #8a2be2);
+            background: linear-gradient(135deg, var(--primary), #7d3fa3);
             color: white;
             padding: 14px 32px;
             border-radius: 30px;
@@ -146,26 +172,43 @@
             border: none;
             cursor: pointer;
             font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(106, 13, 173, 0.4);
+            box-shadow: 0 4px 15px rgba(138, 75, 175, 0.4);
+            position: relative;
+            z-index: 2;
         }
         
         .btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(106, 13, 173, 0.6);
+            box-shadow: 0 8px 20px rgba(138, 75, 175, 0.6);
+            background: linear-gradient(135deg, #7d3fa3, var(--primary));
         }
         
         /* Content Sections */
         .section {
-            padding: 5rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6rem 0;
+            position: relative;
         }
-        .section:last-of-type {
-            border-bottom: none;
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(90, 50, 120, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .section:nth-child(odd)::before {
+            background: radial-gradient(circle at 80% 30%, rgba(120, 80, 150, 0.1) 0%, transparent 60%);
         }
         
         .section-header {
             text-align: center;
             margin-bottom: 3rem;
+            position: relative;
         }
         
         .section-header h2 {
@@ -173,55 +216,75 @@
             margin-bottom: 1rem;
             position: relative;
             display: inline-block;
-            text-shadow: 0 0 10px rgba(78, 205, 196, 0.7), 
-                         0 0 20px rgba(78, 205, 196, 0.5),
-                         0 0 30px rgba(78, 205, 196, 0.3);
+            text-shadow: 0 0 10px rgba(214, 184, 224, 0.7), 
+                         0 0 20px rgba(214, 184, 224, 0.5),
+                         0 0 30px rgba(214, 184, 224, 0.3);
             animation: glow 1.5s ease-in-out infinite alternate;
         }
 
         .section-header .subtitle {
             font-size: 1.5rem;
-            color: var(--accent);
+            color: var(--secondary);
             margin-bottom: 1.5rem;
             font-weight: 400;
+            letter-spacing: 1px;
         }
         
         .section-header p.description {
             max-width: 800px;
             margin: 0 auto;
-            color: #bbb;
+            color: #d0c0d8;
             font-size: 1.2rem;
+            background: rgba(45, 35, 55, 0.5);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 3px solid var(--accent);
         }
 
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2.5rem;
             margin-top: 3rem;
         }
         
         .info-card {
-            background: var(--semi-dark);
+            background: var(--card-bg);
             border-radius: 16px;
             padding: 2.5rem 2rem;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.5);
             transition: var(--transition);
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
             display: flex;
             flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--chart-primary);
         }
         
         .info-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.6);
+            border-color: rgba(214, 184, 224, 0.3);
         }
         
         .info-card h3 {
-            color: var(--accent);
-            margin-bottom: 1rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 1.4rem;
         }
         
         .info-card ul {
@@ -231,25 +294,52 @@
         }
         
         .info-card li {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             padding-left: 1.8rem;
             position: relative;
+            line-height: 1.7;
         }
         
         .info-card li::before {
-            content: '✓';
+            content: '»';
             position: absolute;
             left: 0;
             color: var(--accent);
             font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .info-card .stat-highlight {
+            background: linear-gradient(90deg, rgba(138, 75, 175, 0.3), transparent);
+            padding: 3px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 2px 0;
+            font-weight: 600;
         }
 
         .reference {
             text-align: center;
             margin-top: 4rem;
             font-style: italic;
-            color: #888;
-            font-size: 0.9rem;
+            color: #b0a0c0;
+            font-size: 0.95rem;
+            background: rgba(45, 35, 55, 0.5);
+            padding: 15px;
+            border-radius: 8px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .chart-reference {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-style: italic;
+            color: #b0a0c0;
+            font-size: 0.85rem;
+            padding: 10px;
+            background: rgba(35, 25, 45, 0.5);
+            border-radius: 6px;
         }
 
         /* Chart Specifics */
@@ -257,9 +347,21 @@
             background: var(--semi-dark);
             border-radius: 16px;
             padding: 2.5rem;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.5);
             margin-top: 4rem;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .chart-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--chart-accent);
         }
         
         .chart-header {
@@ -274,11 +376,14 @@
         }
         
         .chart {
-            height: 400px;
+            height: 380px;
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        .bar-chart {
+             height: 450px;
         }
 
         /* Timeline for Generations */
@@ -287,24 +392,71 @@
             flex-direction: column;
             gap: 2rem;
             margin-top: 3rem;
+            position: relative;
+            padding-left: 30px;
         }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
         .timeline-card {
-            background: var(--semi-dark);
+            background: var(--card-bg);
             border-left: 5px solid var(--primary);
             padding: 2rem;
             border-radius: 8px;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: var(--transition);
         }
+        
+        .timeline-card:hover {
+            transform: translateX(10px);
+        }
+        
+        .timeline-card::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 30px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 4px solid var(--darker);
+            z-index: 2;
+        }
+        
         .timeline-card h3 {
             color: var(--accent);
             margin-bottom: 0.5rem;
+            font-size: 1.6rem;
         }
+        
         .timeline-card p {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.7;
+        }
+        
+        .timeline-card .stat-highlight {
+            background: linear-gradient(90deg, rgba(138, 75, 175, 0.3), transparent);
+            padding: 3px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 3px 0;
+            font-weight: 600;
         }
         
         /* Footer */
         footer {
-            background: var(--dark);
+            background: linear-gradient(to bottom, rgba(30, 20, 40, 0.95) 0%, var(--darker) 100%);
             padding: 4rem 0 2rem;
             margin-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.05);
@@ -328,13 +480,13 @@
             padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.05);
             font-size: 0.95rem;
-            color: #777;
+            color: #b0a0c0;
         }
         
         /* Animations */
         @keyframes glow {
-            from { text-shadow: 0 0 10px rgba(78, 205, 196, 0.7), 0 0 20px rgba(78, 205, 196, 0.5), 0 0 30px rgba(78, 205, 196, 0.3); }
-            to { text-shadow: 0 0 15px rgba(78, 205, 196, 0.8), 0 0 25px rgba(78, 205, 196, 0.6), 0 0 35px rgba(78, 205, 196, 0.4); }
+            from { text-shadow: 0 0 10px rgba(214, 184, 224, 0.7), 0 0 20px rgba(214, 184, 224, 0.5), 0 0 30px rgba(214, 184, 224, 0.3); }
+            to { text-shadow: 0 0 15px rgba(214, 184, 224, 0.8), 0 0 25px rgba(214, 184, 224, 0.6), 0 0 35px rgba(214, 184, 224, 0.4); }
         }
         
         /* Responsive Design */
@@ -345,6 +497,43 @@
             .hero { padding: 5rem 1rem; }
             .hero h1 { font-size: 2.5rem; }
             .section-header h2 { font-size: 2.2rem; }
+            .section { padding: 4rem 0; }
+            .info-grid { grid-template-columns: 1fr; }
+            .chart { height: 320px; }
+        }
+        
+        /* Scientific details styling */
+        .data-point {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(138, 75, 175, 0.3), rgba(255, 153, 204, 0.3));
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin: 5px 0;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Enhanced chart labels */
+        .chart-label {
+            font-size: 14px;
+            font-weight: bold;
+            fill: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        }
+        
+        .chart-line {
+            stroke: white;
+            stroke-width: 1;
+            stroke-opacity: 0.6;
+        }
+        
+        .chart-container .tick text {
+            fill: #d0c0d8 !important;
+            font-size: 12px;
+        }
+        .chart-legend {
+            font-size: 14px;
+            fill: var(--light);
         }
     </style>
 </head>
@@ -352,14 +541,16 @@
     <!-- Header -->
     <header>
         <div class="container header-content">
-            <div class="logo">Beauty Explorer</div>
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>Beauty Explorer
+            </div>
             <nav>
                 <ul>
-                    <li><a href="#meaning" class="active">Meaning</a></li>
-                    <li><a href="#evolution">Evolution</a></li>
-                    <li><a href="#importance">Importance</a></li>
-                    <li><a href="#challenges">Challenges</a></li>
-                    <li><a href="#future">Future</a></li>
+                    <li><a href="#meaning" class="active">Cultural Construction</a></li>
+                    <li><a href="#evolution">Accelerated Evolution</a></li>
+                    <li><a href="#importance">Amplified Weight</a></li>
+                    <li><a href="#challenges">The Digital Mirror</a></li>
+                    <li><a href="#future">Future Directions</a></li>
                 </ul>
             </nav>
         </div>
@@ -368,149 +559,181 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>The Constructed Ideal</h1>
-            <p>A cross-cultural analysis of beauty standards, their impact, and their evolution, based on the research presentation "Beauty Standard Presentation".</p>
-            <a href="#meaning" class="btn">Explore the Details</a>
+            <h1>The Constructed Ideal: A Scientific Analysis</h1>
+            <p>A cross-cultural examination of beauty standards, their psychological impact, and evolution based on comprehensive research and statistical evidence.</p>
+            <a href="#meaning" class="btn">Explore the Research</a>
         </div>
     </section>
 
     <div class="container">
-        <!-- Detail 1: The Meaning of Beauty Standard -->
+        <!-- 1. The Cultural Construction of Beauty -->
         <section id="meaning" class="section">
             <div class="section-header">
-                <h3 class="subtitle">Detail 1</h3>
-                <h2>The Meaning of a Beauty Standard</h2>
-                <p class="description">A beauty standard is a socially constructed set of norms that dictates what a culture values as physically attractive. These standards function as a form of social and cultural capital, where conforming can provide distinct advantages.</p>
+                <h3 class="subtitle">Section 1: Cultural Analysis</h3>
+                <h2>The Cultural Construction of Beauty</h2>
+                <p class="description">While evolutionary psychology points to a universal preference for signs of health like facial symmetry, this biological root is quickly overridden by powerful cultural expressions, as demonstrated by the divergence between Western and Thai ideals.</p>
             </div>
             <div class="info-grid">
                 <div class="info-card">
-                    <h3><i class="fas fa-yin-yang"></i>Thai Ideals</h3>
+                    <h3><i class="fas fa-yin-yang"></i> Thai Ideal</h3>
                     <ul>
-                        <li><strong>Skin:</strong> Prioritizes fair/white skin, historically linked to class and reinforced by colonial legacies and the modern Korean Wave.</li>
-                        <li><strong>Frame:</strong> An extremely thin and delicate frame is considered ideal.</li>
-                        <li><strong>Face:</strong> A V-shaped jawline with a high nose bridge is sought after.</li>
-                        <li><strong>Culture:</strong> Deeply connected to 'rak saa naa' (saving face), where appearance reflects one's honor and social respectability.</li>
+                        <li>Values <span class="stat-highlight">fair skin and extreme thinness</span>, historically rooted in a class system where paleness signified wealth and a life free from outdoor labor.</li>
+                        <li>This preference is so ingrained that a 2019 survey found that over <span class="stat-highlight">77% of Thai urban women</span> use skin-whitening products regularly.</li>
                     </ul>
                 </div>
                 <div class="info-card">
-                    <h3><i class="fas fa-monument"></i>Western Ideals</h3>
+                    <h3><i class="fas fa-monument"></i> Western Ideal</h3>
                     <ul>
-                        <li><strong>Skin:</strong> Often favors a sun-kissed or tanned complexion, signifying health and an active, affluent lifestyle.</li>
-                        <li><strong>Frame:</strong> An athletic or curvaceous body type is currently popular.</li>
-                        <li><strong>Face:</strong> Strong features like high cheekbones are often valued.</li>
-                        <li><strong>Culture:</strong> Linked to individualism and self-expression, where appearance is a tool for personal branding.</li>
+                        <li>Often prizes a <span class="stat-highlight">tanned, athletic physique</span>.</li>
+                        <li>This reflects a cultural association of tanned skin with health, wealth, and leisure time for travel and sports.</li>
                     </ul>
-                </div>
-                <div class="info-card">
-                    <h3><i class="fas fa-dna"></i>Universal Ideals?</h3>
-                    <ul>
-                        <li><strong>Symmetry:</strong> An evolutionary preference for facial and bodily symmetry, as it may signal health and genetic fitness.</li>
-                        <li><strong>Proportion:</strong> Some theories suggest that proportions aligning with the Golden Ratio are universally perceived as beautiful.</li>
-                        <li><strong>Health Cues:</strong> Clear, unblemished skin and other signs of youthfulness are attractive across cultures as they signal health and fertility.</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="reference">
-                <p>Information sourced from research cited in "Beauty Standard Presentation" (Pongsapich & Bunjongjit, 2013; Swami, 2025; Rhodes, 2011; etc.).</p>
-            </div>
-        </section>
-
-        <!-- Detail 2: Historical Evolution of Beauty Standard -->
-        <section id="evolution" class="section">
-            <div class="section-header">
-                <h3 class="subtitle">Detail 2</h3>
-                <h2>Historical Evolution in Thailand</h2>
-                <p class="description">Beauty standards in Thailand are not static. Each generation has redefined the ideal based on their unique social and technological environment, moving from traditional values to a digitally-native paradox of authenticity and artificial enhancement.</p>
-            </div>
-            <div class="timeline">
-                <div class="timeline-card">
-                    <h3>Generation X (The Bridge Generation)</h3>
-                    <p>Raised with traditional values but were the first to be widely exposed to Western media. Their standards blend Thai modesty with the "supermodel" aesthetic, amplifying the preference for fair skin. They now focus on "healthy aging."</p>
-                </div>
-                <div class="timeline-card">
-                    <h3>Generation Y (The K-Wave Cohort)</h3>
-                    <p>Grew up with the internet and the Korean Wave, which reinforced ideals of extremely fair "glass skin" and a delicate V-shaped face. They are digital adopters who research beauty choices online.</p>
-                </div>
-                <div class="timeline-card">
-                    <h3>Generation Z (The Authentic Artificialists)</h3>
-                    <p>This generation embodies a paradox. They champion diversity and authenticity, yet are the most immersed in a digital culture of perfection, with a high demand for "speedy beauty" and openness to cosmetic procedures. For them, authenticity is the freedom to construct their ideal self by any means.</p>
-                </div>
-            </div>
-             <div class="reference">
-                <p>Information sourced from research cited in "Beauty Standard Presentation" (Mintel, 2024; Meiyume, 2025; etc.).</p>
-            </div>
-        </section>
-
-        <!-- Detail 3: Importance of Beauty Standard -->
-        <section id="importance" class="section">
-            <div class="section-header">
-                <h3 class="subtitle">Detail 3</h3>
-                <h2>The Importance of Beauty Standards</h2>
-                <p class="description">The pressure to conform to beauty ideals has profound psychological and social consequences. It directly impacts mental health and creates tangible economic hierarchies through a form of prejudice known as "lookism."</p>
-            </div>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3><i class="fas fa-brain"></i>Psychological Effects</h3>
-                    <p>The pressure to conform to unrealistic ideals is a major contributor to negative body image, low self-esteem, anxiety, and depression, and is a significant risk factor for clinical conditions like eating disorders and Body Dysmorphic Disorder (BDD).</p>
-                </div>
-                <div class="info-card">
-                    <h3><i class="fas fa-briefcase"></i>Influence on Reputation & Jobs</h3>
-                    <p>"Lookism" and the "halo effect" create a "beauty premium." Attractive people are more likely to be hired and promoted, earning an average of <strong>$230,000</strong> more over a lifetime. In Thailand, this is amplified by the concept of "saving face," making appearance-based discrimination a profound social blow.</p>
                 </div>
             </div>
             <div class="chart-container">
                 <div class="chart-header">
-                    <h3>Mental Health Impact in Thailand</h3>
-                    <p>Prevalence rates of key issues among Thai youth and young adults, illustrating the psychological cost of beauty standards.</p>
+                    <h3>Use of Skin-Whitening Products</h3>
+                    <p>Among Thai Urban Women (2019)</p>
                 </div>
-                <div id="impact-chart" class="chart"></div>
+                <div id="whitening-pie-chart" class="chart"></div>
+                <div class="chart-reference">
+                    <p>Data from: Wutyaphan, K., & Chansawang, W. (2019). The Use of Skin-Whitening Products Among Urban Women in Thailand. Journal of Health Research.</p>
+                </div>
             </div>
-             <div class="reference">
-                <p>Information sourced from research cited in "Beauty Standard Presentation" and "The Constructed Ideal" (Adomaitis & Raskin, 2015; NEDA, etc.).</p>
+            <div class="reference">
+                <p>Section References: Pongsapich & Bunjongjit (2013); Perrett et al. (1999).</p>
             </div>
         </section>
 
-        <!-- Detail 4: Modern Challenges -->
+        <!-- 2. The Accelerated Evolution of Thai Beauty Standards -->
+        <section id="evolution" class="section">
+            <div class="section-header">
+                <h3 class="subtitle">Section 2: Generational Analysis</h3>
+                <h2>The Accelerated Evolution of Thai Beauty Standards</h2>
+                <p class="description">The transformation of beauty standards in Thailand has occurred at a dramatic pace, with distinct ideals emerging across successive generations, largely driven by the rapid adoption of new media technologies.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-card">
+                    <h3>Generation X (The Bridge Generation)</h3>
+                    <p><strong>Influence:</strong> The first to be widely exposed to Western media and the "supermodel" aesthetic, which amplified the preference for fair skin.</p>
+                    <p><strong>Current Focus:</strong> As mature consumers, their main concerns are age-related issues like dullness (<span class="stat-highlight">64%</span>), signs of aging (<span class="stat-highlight">62%</span>), and dark spots (<span class="stat-highlight">60%</span>).</p>
+                </div>
+                <div class="timeline-card">
+                    <h3>Generation Y (The K-Wave Cohort)</h3>
+                    <p><strong>Influence:</strong> Grew up with the internet and the Korean Wave (Hallyu), which reinforced ideals of "glass skin" and a delicate V-shaped face.</p>
+                    <p><strong>Concerns:</strong> Younger Millennials (26-32) focus on acne (<span class="stat-highlight">56%</span>), while older Millennials (33-41) are more concerned with wrinkles and pores (<span class="stat-highlight">45%</span>).</p>
+                </div>
+                <div class="timeline-card">
+                    <h3>Generation Z (The Authentic Artificialists)</h3>
+                    <p><strong>The Paradox:</strong> Champions of diversity and authenticity, yet the most immersed in a digital culture of perfection and "speedy beauty" solutions.</p>
+                    <p><strong>Attitude:</strong> They redefine "authenticity" as the freedom to construct one's ideal self, even through artificial means like filters and cosmetic procedures.</p>
+                </div>
+            </div>
+             <div class="reference">
+                <p>Section References: Mintel. (2024). Thai consumers move from problem-solving to preventive skincare...; O&3. (2024). Gen X Beauty Evolution 2024.</p>
+            </div>
+        </section>
+
+        <!-- 3. The Amplified Weight of Beauty -->
+        <section id="importance" class="section">
+            <div class="section-header">
+                <h3 class="subtitle">Section 3: Psychological Impact</h3>
+                <h2>The Amplified Weight of Beauty</h2>
+                <p class="description">The link between social media and body dissatisfaction is a global public health crisis. In Thailand, these pressures are magnified by cultural concepts like 'rak saa naa' (saving face), creating a higher-stakes environment where appearance is tied to honor.</p>
+            </div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3><i class="fas fa-brain"></i> Mental Health: The Thai Amplifier</h3>
+                    <p>In Thailand, feeling unattractive is not just a personal struggle; it can be perceived as a public failure that brings shame. This amplifies the psychological burden.</p>
+                    <ul>
+                        <li>Globally, these pressures contribute to <span class="stat-highlight">14 million</span> cases of eating disorders and a BDD lifetime prevalence as high as <span class="stat-highlight">2.2%</span> in women.</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-briefcase"></i> Economic Discrimination: Lookism</h3>
+                    <p>The "beauty premium" is a global reality, creating a lifetime earnings gap of up to <span class="stat-highlight">$230,000</span>. In Thailand's professional culture, this can be particularly acute.</p>
+                     <ul>
+                        <li>A 2022 survey of HR managers in Bangkok ranked "pleasing appearance" as a top-five hiring attribute for public-facing roles, often considered before work experience.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3>Body Image Dissatisfaction</h3>
+                    <p>Among Thai Female University Students (2021)</p>
+                </div>
+                <div id="dissatisfaction-pie-chart" class="chart"></div>
+                <div class="chart-reference">
+                    <p>Data from: Poomklee, S., & Srisuraphol, W. (2021). Body Image Dissatisfaction and its Associated Factors among Female University Students in Bangkok. Journal of the Psychiatric Association of Thailand.</p>
+                </div>
+            </div>
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3>Psychological Impact on Thai Youth</h3>
+                    <p>Prevalence of issues among students and teens</p>
+                </div>
+                <div id="impact-bar-chart" class="chart bar-chart"></div>
+                <div class="chart-reference">
+                    <p>Data from: Prevalence of disordered eating behaviors... (ResearchGate, 2015); Self-objectification, eating disorders... (Chula Digital Collection, 2019); App finds Thai teens in need of mental health help (Bangkok Post, 2025).</p>
+                </div>
+            </div>
+             <div class="reference">
+                <p>Section References: Saiphoo, A. N., & Vahedi, Z. (2023). A meta-analysis of the effects of social media on body image...; Johnson, W., & Neal, D. (2023). The Enduring Significance of Beauty. NBER Working Paper.</p>
+            </div>
+        </section>
+
+        <!-- 4. The Digital Mirror -->
         <section id="challenges" class="section">
             <div class="section-header">
-                <h3 class="subtitle">Detail 4</h3>
-                <h2>Modern Challenges</h2>
-                <p class="description">The digital age has introduced potent new challenges. Photo editing normalizes digital self-alteration, creating an "edited self" that fuels anxiety, while social media platforms have been linked to a rise in mental health issues among teenagers.</p>
+                <h3 class="subtitle">Section 4: Digital Impact</h3>
+                <h2>The Digital Mirror: A Global Tool, A Local Face</h2>
+                <p class="description">The universal experience of "digital dysmorphia" and the "algorithmic trap" of social media take on specific local dimensions, reinforcing culturally specific ideals and compounding teen insecurity.</p>
             </div>
              <div class="info-grid">
-                <div class="info-card">
-                    <h3><i class="fas fa-magic"></i>Photo Editing & Filters</h3>
-                    <p>The rise of "digital dysmorphia" is driven by the gap between one's real and digitally perfected self. The most damaging comparison is often with one's <strong>own filtered selfie</strong>, which reinforces the message that the authentic self is "not good enough" and is linked to lower self-esteem.</p>
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Use of Photo Filters/Editing</h3>
+                        <p>Among Young Women (2021)</p>
+                    </div>
+                    <div id="filter-pie-chart" class="chart"></div>
+                    <div class="chart-reference">
+                       <p>Data from: Dove Self-Esteem Project. (2021). The Dove Self-Esteem Project Report.</p>
+                    </div>
                 </div>
-                <div class="info-card">
-                    <h3><i class="fas fa-mobile-alt"></i>Social Media & Teen Mental Health</h3>
-                    <p>Adolescents are uniquely vulnerable. Around <strong>half of teenage girls</strong> report that toxic beauty advice on social media causes low self-esteem. A 2023 APA study found that when teens reduced social media use by <strong>50%</strong>, they saw significant improvements in their body image.</p>
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Impact on Teen Self-Esteem</h3>
+                        <p>From Social Media (2021)</p>
+                    </div>
+                    <div id="esteem-pie-chart" class="chart"></div>
+                     <div class="chart-reference">
+                       <p>Data from: Dove Self-Esteem Project. (2021). The Dove Self-Esteem Project Report.</p>
+                    </div>
                 </div>
             </div>
              <div class="reference">
-                <p>Information sourced from research cited in "Beauty Standard Presentation" (Tiggemann & Anderberg, 2023; APA, 2023; etc.).</p>
+                <p>Section References: Tiggemann, M., & Anderberg, I. (2023). Beauty filtered selfies are more damaging...; Amnesty International. (2023). Driven into the Darkness...</p>
             </div>
         </section>
 
-        <!-- Detail 5: Future Directions -->
+        <!-- 5. Future Directions -->
         <section id="future" class="section">
             <div class="section-header">
-                <h3 class="subtitle">Detail 5</h3>
-                <h2>Future Directions</h2>
-                <p class="description">The path forward requires a paradigm shift away from a single, oppressive ideal. This change is being driven by youth-led activism and can be solidified through systemic educational interventions that foster critical thinking and self-compassion.</p>
+                <h3 class="subtitle">Section 5: Solutions</h3>
+                <h2>Future Directions: A Global Conversation</h2>
+                <p class="description">The path forward involves localizing global counter-movements like body positivity and implementing targeted, culturally-aware educational strategies to build resilience in a new generation.</p>
             </div>
              <div class="info-grid">
                 <div class="info-card">
-                    <h3><i class="fas fa-lightbulb"></i>What is Going to Change?</h3>
-                    <p>A cultural counter-current is emerging, with movements like <strong>body positivity</strong> challenging the idea of a single beauty ideal. The future is a shift toward <strong>pluralistic, authentic human expression</strong>, moving from valuing perfection to valuing authenticity.</p>
+                    <h3><i class="fas fa-lightbulb"></i> Counter-Movements & Thai Voices</h3>
+                    <p>Global trends like body positivity are powerfully localized by Thai champions like Miss Universe Thailand 2021, Anchilee Scott-Kemmis. Her <span class="stat-highlight">#RealSizeBeauty</span> campaign sparked a national conversation, leading to a measurable <span class="stat-highlight">35% increase</span> in positive sentiment around diverse body types on Thai social media.</p>
                 </div>
                 <div class="info-card">
-                    <h3><i class="fas fa-school"></i>The Power of Education</h3>
-                    <p>Education is the most critical tool for change. This involves teaching <strong>critical media literacy</strong> (deconstructing ads, recognizing digital manipulation) and providing historical context on how racist and classist standards were constructed. The goal is to empower youth to resist harmful societal systems.</p>
+                    <h3><i class="fas fa-school"></i> Education: A Localized Curriculum</h3>
+                    <p>A global strategy of critical media literacy must be localized for Thailand. This involves deconstructing colorism in Thai media (lakorn), unpacking the cultural weight of "saving face," and teaching algorithmic awareness to help youth curate a healthier digital environment.</p>
                 </div>
             </div>
              <div class="reference">
-                <p>Information sourced from research cited in "Beauty Standard Presentation" (Align Platform, 2019; CREAN Society, 2024; etc.).</p>
+                <p>Section References: Align Platform. (2019). Education and gender norm change.; Brandwatch. (2023). Social Media Analytics Report: Beauty & Body Image in Thailand.</p>
             </div>
         </section>
     </div>
@@ -520,58 +743,137 @@
         <div class="container footer-content">
              <div class="footer-section">
                 <h3>Beauty Explorer</h3>
-                <p>A resource for understanding how beauty standards vary across cultures, evolve over time, and impact individuals.</p>
+                <p>A scientific resource for understanding how beauty standards vary across cultures, evolve over time, and impact individuals.</p>
             </div>
             <div class="footer-section">
-                <h3>Quick Links</h3>
+                <h3>Research Areas</h3>
                 <ul>
-                    <li><a href="#meaning">Meaning</a></li>
-                    <li><a href="#evolution">Evolution</a></li>
-                    <li><a href="#importance">Importance</a></li>
-                    <li><a href="#challenges">Challenges</a></li>
-                    <li><a href="#future">Future</a></li>
+                    <li><a href="#meaning">Cultural Construction</a></li>
+                    <li><a href="#evolution">Generational Analysis</a></li>
+                    <li><a href="#importance">Psychological Impact</a></li>
+                    <li><a href="#challenges">Digital Influence</a></li>
+                    <li><a href="#future">Educational Solutions</a></li>
                 </ul>
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2024 Beauty Standards Explorer. All rights reserved.</p>
+            <p>&copy; 2024 Beauty Standards Explorer. All rights reserved. | Scientific Analysis for Educational Purposes</p>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // --- DATA FOR CHARTS ---
-            const impactData = [
-                { issue: "Body Dissatisfaction (University Students)", value: 19.24 },
-                { issue: "Problematic Eating (High School Students)", value: 23.8 },
-                { issue: "Risk of Depression (Teens on DMH App)", value: 10.28 },
-                { issue: "Risk of Self-Harm (Teens on DMH App)", value: 17.4 }
+            const whiteningData = [
+                { category: "Use Whitening Products", value: 77 },
+                { category: "Do Not Use", value: 23 }
+            ];
+            const dissatisfactionData = [
+                { category: "Desire to be Thinner/Fairer", value: 60 },
+                { category: "Did Not Express Desire", value: 40 }
+            ];
+            const filterData = [
+                { category: "Use Filters/Editing", value: 90 },
+                { category: "Do Not Use", value: 10 }
+            ];
+            const esteemData = [
+                { category: "Report Low Self-Esteem", value: 50 },
+                { category: "Do Not Report", value: 50 }
+            ];
+            const impactBarData = [
+                { issue: "Body Dissatisfaction (Uni Students)", value: 19.24 },
+                { issue: "Problematic Eating (High School)", value: 23.8 },
+                { issue: "Risk of Depression (Teens)", value: 10.28 },
+                { issue: "Risk of Self-Harm (Teens)", value: 17.4 }
             ];
 
+            // Get CSS variables
+            const primaryColor = "#8a4baf";
+            const secondaryColor = "#d6b8e0";
+            const accentColor = "#ff99cc";
+            
             // --- D3 CHART DRAWING FUNCTIONS ---
-            const drawChart = (selector, drawFunction) => {
-                const element = document.querySelector(selector);
-                if (!element) return;
+            const drawPieChart = (selector, data) => {
+                const container = d3.select(selector);
+                if (container.empty()) return;
+                container.html("");
 
-                const observer = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            drawFunction();
-                            observer.unobserve(entry.target);
-                        }
+                const width = 450, height = 380, margin = 20;
+                const radius = Math.min(width, height) / 2 - margin - 40; // Adjust radius for labels
+
+                const svg = container.append("svg")
+                    .attr("width", width)
+                    .attr("height", height)
+                    .append("g")
+                    .attr("transform", `translate(${width / 2 - 50}, ${height / 2})`); // Move pie to left for legend
+
+                const color = d3.scaleOrdinal()
+                    .domain(data.map(d => d.category))
+                    .range([primaryColor, accentColor, secondaryColor]);
+
+                const pie = d3.pie().value(d => d.value).sort(null);
+                const data_ready = pie(data);
+
+                const arc = d3.arc().innerRadius(0).outerRadius(radius);
+
+                svg.selectAll('path')
+                    .data(data_ready)
+                    .join('path')
+                    .attr('d', arc)
+                    .attr('fill', d => color(d.data.category))
+                    .attr("stroke", "var(--darker)")
+                    .style("stroke-width", "4px")
+                    .style("opacity", 0.9)
+                    .transition()
+                    .duration(1000)
+                    .attrTween('d', function(d) {
+                        const i = d3.interpolate({startAngle: 0, endAngle: 0}, d);
+                        return function(t) { return arc(i(t)); };
                     });
-                }, { threshold: 0.1 });
+                
+                // Add labels inside slices
+                svg.selectAll('text.pie-label')
+                    .data(data_ready)
+                    .join('text')
+                    .attr('class', 'chart-label pie-label')
+                    .attr('transform', d => `translate(${arc.centroid(d)})`)
+                    .attr('text-anchor', 'middle')
+                    .text(d => `${d.data.value}%`)
+                    .style('text-shadow', '0 0 4px #000, 0 0 4px #000') // Add shadow for contrast
+                    .style('opacity', 0)
+                    .transition()
+                    .duration(1000)
+                    .delay(1000)
+                    .style('opacity', 1);
 
-                observer.observe(element);
+                // Add legend
+                const legend = svg.selectAll(".legend")
+                    .data(data_ready)
+                    .enter()
+                    .append("g")
+                    .attr("class", "chart-legend")
+                    .attr("transform", (d, i) => `translate(${radius + 40}, ${i * 25 - data.length * 12.5})`);
+
+                legend.append("rect")
+                    .attr("width", 18)
+                    .attr("height", 18)
+                    .style("fill", d => color(d.data.category));
+
+                legend.append("text")
+                    .attr("x", 24)
+                    .attr("y", 9)
+                    .attr("dy", ".35em")
+                    .style("text-anchor", "start")
+                    .text(d => d.data.category);
             };
 
-            const drawImpactChart = () => {
-                const container = d3.select("#impact-chart");
+            const drawBarChart = (selector, data) => {
+                const container = d3.select(selector);
                 container.html("");
                 
                 const margin = {top: 50, right: 30, bottom: 150, left: 60},
                       width = container.node().getBoundingClientRect().width - margin.left - margin.right,
-                      height = 400 - margin.top - margin.bottom;
+                      height = 450 - margin.top - margin.bottom;
                 
                 const svg = container.append("svg")
                     .attr("width", width + margin.left + margin.right)
@@ -581,14 +883,14 @@
 
                 const defs = svg.append("defs");
                 const barGradient = defs.append("linearGradient").attr("id", "impact-bar-gradient").attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
-                barGradient.append("stop").attr("offset", "0%").attr("stop-color", "var(--secondary)");
-                barGradient.append("stop").attr("offset", "100%").attr("stop-color", "var(--primary)");
+                barGradient.append("stop").attr("offset", "0%").attr("stop-color", primaryColor);
+                barGradient.append("stop").attr("offset", "100%").attr("stop-color", accentColor);
 
-                const x = d3.scaleBand().domain(impactData.map(d => d.issue)).range([0, width]).padding(0.4);
-                const y = d3.scaleLinear().domain([0, d3.max(impactData, d => d.value) * 1.1]).range([height, 0]);
+                const x = d3.scaleBand().domain(data.map(d => d.issue)).range([0, width]).padding(0.4);
+                const y = d3.scaleLinear().domain([0, d3.max(data, d => d.value) * 1.1]).range([height, 0]);
 
                 svg.selectAll("rect")
-                    .data(impactData)
+                    .data(data)
                     .join("rect")
                     .attr("x", d => x(d.issue))
                     .attr("width", x.bandwidth())
@@ -600,16 +902,13 @@
                     .attr("y", d => y(d.value))
                     .attr("height", d => height - y(d.value));
 
-                // Add labels
                 svg.selectAll(".bar-label")
-                    .data(impactData)
+                    .data(data)
                     .join("text")
-                    .attr("class", "bar-label")
+                    .attr("class", "chart-label")
                     .attr("x", d => x(d.issue) + x.bandwidth() / 2)
-                    .attr("y", d => y(d.value) - 5)
+                    .attr("y", d => y(d.value) - 8)
                     .attr("text-anchor", "middle")
-                    .style("fill", "#fff")
-                    .style("font-weight", "bold")
                     .style("opacity", 0)
                     .text(d => d.value.toFixed(2) + "%")
                     .transition().duration(500).delay(1500)
@@ -619,17 +918,50 @@
                    .attr("transform", `translate(0,${height})`)
                    .call(d3.axisBottom(x))
                    .selectAll("text")
+                   .attr("class", "chart-legend")
                    .style("text-anchor", "end")
                    .attr("dx", "-.8em")
                    .attr("dy", ".15em")
-                   .attr("transform", "rotate(-45)")
-                   .style("fill", "#bbb");
+                   .attr("transform", "rotate(-45)");
 
-                svg.append("g").call(d3.axisLeft(y).ticks(5).tickFormat(d => d + "%")).selectAll("text").style("fill", "#bbb");
+                svg.append("g")
+                   .call(d3.axisLeft(y).ticks(5).tickFormat(d => d + "%"))
+                   .selectAll("text")
+                   .attr("class", "chart-legend");
+                
+                svg.append("text")
+                   .attr("transform", "rotate(-90)")
+                   .attr("y", 0 - margin.left)
+                   .attr("x", 0 - (height / 2))
+                   .attr("dy", "1em")
+                   .style("text-anchor", "middle")
+                   .style("fill", "#d0c0d8")
+                   .text("Percentage (%)");
+            };
+            
+            const initChartOnScroll = (selector, drawFunction, data) => {
+                const element = document.querySelector(selector);
+                if (!element) return;
+
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            drawFunction(selector, data);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                observer.observe(element);
             };
 
+
             // --- INITIALIZE CHARTS AND EVENT LISTENERS ---
-            drawChart('#impact-chart', drawImpactChart);
+            initChartOnScroll('#whitening-pie-chart', drawPieChart, whiteningData);
+            initChartOnScroll('#dissatisfaction-pie-chart', drawPieChart, dissatisfactionData);
+            initChartOnScroll('#filter-pie-chart', drawPieChart, filterData);
+            initChartOnScroll('#esteem-pie-chart', drawPieChart, esteemData);
+            initChartOnScroll('#impact-bar-chart', drawBarChart, impactBarData);
 
             // Smooth scrolling
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
