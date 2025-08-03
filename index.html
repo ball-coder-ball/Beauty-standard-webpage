@@ -751,7 +751,7 @@
                     </div>
                     <div id="global-market-chart" class="chart"></div>
                     <div class="chart-reference">
-                        <p>Source: Precedence Research, 'Beauty and Personal Care Products Market Size and Forecast 2025 to 2034', FY 2024.</p>
+                        <p>Source: Precedence Research, FY 2024; Demand Sage, FY 2024.</p>
                     </div>
                 </div>
             </div>
@@ -787,7 +787,7 @@
                     </div>
                     <div id="thailand-market-chart" class="chart"></div>
                      <div class="chart-reference">
-                        <p>Source: MEIYUME, 'Thailand Beauty Market Trends (2024) - Spotlight Trend Report', FY 2024.</p>
+                        <p>Source: MEIYUME, FY 2024; International Trade Administration, FY 2024.</p>
                     </div>
                 </div>
             </div>
@@ -929,17 +929,19 @@
                         return function(t) { return arc(i(t)); };
                     });
                 
-                svg.selectAll('path')
-                    .on("mouseover", function(event, d) {
-                        d3.select("#tooltip")
-                            .style("opacity", 1)
-                            .html(`<strong>${d.data.category}</strong><br>${d.data.value}%`)
-                            .style("left", (event.pageX + 10) + "px")
-                            .style("top", (event.pageY - 28) + "px");
-                    })
-                    .on("mouseout", function() {
-                        d3.select("#tooltip").style("opacity", 0);
-                    });
+                svg.selectAll('text.pie-label')
+                    .data(data_ready)
+                    .join('text')
+                    .attr('class', 'chart-label pie-label')
+                    .attr('transform', d => `translate(${arc.centroid(d)})`)
+                    .attr('text-anchor', 'middle')
+                    .text(d => `${d.data.value}%`)
+                    .style('text-shadow', '0 0 4px #000, 0 0 4px #000')
+                    .style('opacity', 0)
+                    .transition()
+                    .duration(1000)
+                    .delay(1000)
+                    .style('opacity', 1);
 
                 const legend = svg.selectAll(".legend")
                     .data(data_ready)
@@ -1058,18 +1060,6 @@
             initChartOnScroll('#global-market-chart', drawDonutChart, globalMarketData);
             initChartOnScroll('#thailand-market-chart', drawDonutChart, thailandMarketData);
             initChartOnScroll('#impact-bar-chart', drawBarChart, impactBarData);
-            
-            // Add tooltip div
-            d3.select("body").append("div")
-                .attr("id", "tooltip")
-                .style("position", "absolute")
-                .style("opacity", 0)
-                .style("background", "var(--dark)")
-                .style("border", "1px solid var(--primary)")
-                .style("border-radius", "8px")
-                .style("padding", "10px")
-                .style("color", "white")
-                .style("pointer-events", "none");
 
             // Smooth scrolling
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
