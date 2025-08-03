@@ -385,6 +385,40 @@
         .bar-chart {
              height: 450px;
         }
+        .kpi-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .kpi-metric {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        .kpi-label {
+            font-size: 1rem;
+            color: #d0c0d8;
+        }
+        .kpi-benchmark {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+        }
+        .kpi-benchmark .kpi-value {
+            color: white;
+        }
+        .kpi-benchmark .kpi-label {
+            color: rgba(255,255,255,0.9);
+        }
+
 
         /* Timeline for Generations */
         .timeline {
@@ -548,7 +582,8 @@
                 <ul>
                     <li><a href="#meaning" class="active">Cultural Construction</a></li>
                     <li><a href="#evolution">Accelerated Evolution</a></li>
-                    <li><a href="#importance">Amplified Weight</a></li>
+                    <li><a href="#importance">Psychological Impact</a></li>
+                    <li><a href="#economy">Economic Footprint</a></li>
                     <li><a href="#challenges">The Digital Mirror</a></li>
                     <li><a href="#future">Future Directions</a></li>
                 </ul>
@@ -681,10 +716,87 @@
             </div>
         </section>
 
-        <!-- 4. The Digital Mirror -->
+        <!-- 4. The Beauty Market's Economic Footprint -->
+        <section id="economy" class="section">
+            <div class="section-header">
+                <h3 class="subtitle">Section 4: Market Analysis</h3>
+                <h2>The Beauty Market's Economic Footprint</h2>
+                <p class="description">The pursuit of beauty is a formidable economic engine. This section provides a high-level analysis of its global scale and composition, with a specific focus on the Thai market, using consistent Full Year 2024 data for a like-for-like comparison.</p>
+            </div>
+            
+            <!-- Module 1: Global Perspective -->
+            <div class="info-card" style="margin-bottom: 4rem;">
+                <h3><i class="fas fa-globe"></i> Global Perspective (FY 2024)</h3>
+                <div class="kpi-container">
+                    <div class="kpi-metric">
+                        <div class="kpi-value">$598.6B</div>
+                        <div class="kpi-label">Global Beauty Market</div>
+                    </div>
+                    <div class="kpi-metric">
+                        <div class="kpi-value">+6.8%</div>
+                        <div class="kpi-label">YoY Growth</div>
+                    </div>
+                    <div class="kpi-metric">
+                        <div class="kpi-value">$105T</div>
+                        <div class="kpi-label">Global GDP</div>
+                    </div>
+                     <div class="kpi-metric">
+                        <div class="kpi-value">0.57%</div>
+                        <div class="kpi-label">% of Global GDP</div>
+                    </div>
+                </div>
+                <div class="chart-container" style="margin-top: 2rem;">
+                    <div class="chart-header">
+                        <h3>Global Market Breakdown (FY 2024)</h3>
+                    </div>
+                    <div id="global-market-chart" class="chart"></div>
+                    <div class="chart-reference">
+                        <p>Source: Precedence Research, 'Beauty and Personal Care Products Market Size and Forecast 2025 to 2034', FY 2024.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 2: Thailand National Focus -->
+            <div class="info-card">
+                <h3><i class="fas fa-map-marker-alt"></i> Market Spotlight: Thailand (FY 2024)</h3>
+                 <div class="kpi-container">
+                    <div class="kpi-metric">
+                        <div class="kpi-value">$7.2B</div>
+                        <div class="kpi-label">Thailand Beauty Market</div>
+                    </div>
+                    <div class="kpi-metric">
+                        <div class="kpi-value">+13.9%</div>
+                        <div class="kpi-label">YoY Growth</div>
+                    </div>
+                     <div class="kpi-metric">
+                        <div class="kpi-value">$536B</div>
+                        <div class="kpi-label">Thailand GDP</div>
+                    </div>
+                    <div class="kpi-metric">
+                        <div class="kpi-value">1.34%</div>
+                        <div class="kpi-label">% of National GDP</div>
+                    </div>
+                    <div class="kpi-metric kpi-benchmark">
+                        <div class="kpi-value">+7.1%</div>
+                        <div class="kpi-label">Growth vs. Global Benchmark</div>
+                    </div>
+                </div>
+                <div class="chart-container" style="margin-top: 2rem;">
+                    <div class="chart-header">
+                        <h3>Thailand Market Breakdown (FY 2024)</h3>
+                    </div>
+                    <div id="thailand-market-chart" class="chart"></div>
+                     <div class="chart-reference">
+                        <p>Source: MEIYUME, 'Thailand Beauty Market Trends (2024) - Spotlight Trend Report', FY 2024.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. The Digital Mirror -->
         <section id="challenges" class="section">
             <div class="section-header">
-                <h3 class="subtitle">Section 4: Digital Impact</h3>
+                <h3 class="subtitle">Section 5: Digital Impact</h3>
                 <h2>The Digital Mirror: A Global Tool, A Local Face</h2>
                 <p class="description">The universal experience of "digital dysmorphia" and the "algorithmic trap" of social media take on specific local dimensions, reinforcing culturally specific ideals and compounding teen insecurity.</p>
             </div>
@@ -715,10 +827,10 @@
             </div>
         </section>
 
-        <!-- 5. Future Directions -->
+        <!-- 6. Future Directions -->
         <section id="future" class="section">
             <div class="section-header">
-                <h3 class="subtitle">Section 5: Solutions</h3>
+                <h3 class="subtitle">Section 6: Solutions</h3>
                 <h2>Future Directions: A Global Conversation</h2>
                 <p class="description">The path forward involves localizing global counter-movements like body positivity and implementing targeted, culturally-aware educational strategies to build resilience in a new generation.</p>
             </div>
@@ -751,6 +863,7 @@
                     <li><a href="#meaning">Cultural Construction</a></li>
                     <li><a href="#evolution">Generational Analysis</a></li>
                     <li><a href="#importance">Psychological Impact</a></li>
+                    <li><a href="#economy">Economic Footprint</a></li>
                     <li><a href="#challenges">Digital Influence</a></li>
                     <li><a href="#future">Educational Solutions</a></li>
                 </ul>
@@ -764,28 +877,13 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // --- DATA FOR CHARTS ---
-            const whiteningData = [
-                { category: "Use Whitening Products", value: 77 },
-                { category: "Do Not Use", value: 23 }
-            ];
-            const dissatisfactionData = [
-                { category: "Desire to be Thinner/Fairer", value: 60 },
-                { category: "Did Not Express Desire", value: 40 }
-            ];
-            const filterData = [
-                { category: "Use Filters/Editing", value: 90 },
-                { category: "Do Not Use", value: 10 }
-            ];
-            const esteemData = [
-                { category: "Report Low Self-Esteem", value: 50 },
-                { category: "Do Not Report", value: 50 }
-            ];
-            const impactBarData = [
-                { issue: "Body Dissatisfaction (Uni Students)", value: 19.24 },
-                { issue: "Problematic Eating (High School)", value: 23.8 },
-                { issue: "Risk of Depression (Teens)", value: 10.28 },
-                { issue: "Risk of Self-Harm (Teens)", value: 17.4 }
-            ];
+            const whiteningData = [ { category: "Use Whitening Products", value: 77 }, { category: "Do Not Use", value: 23 } ];
+            const dissatisfactionData = [ { category: "Desire to be Thinner/Fairer", value: 60 }, { category: "Did Not Express Desire", value: 40 } ];
+            const filterData = [ { category: "Use Filters/Editing", value: 90 }, { category: "Do Not Use", value: 10 } ];
+            const esteemData = [ { category: "Report Low Self-Esteem", value: 50 }, { category: "Do Not Report", value: 50 } ];
+            const globalMarketData = [ { category: "Skincare", value: 42 }, { category: "Hair Care", value: 22 }, { category: "Makeup", value: 21 }, { category: "Fragrance", value: 15 } ];
+            const thailandMarketData = [ { category: "Skincare", value: 60 }, { category: "Hair Care", value: 20 }, { category: "Makeup", value: 14 }, { category: "Fragrance", value: 6 } ];
+            const impactBarData = [ { issue: "Body Dissatisfaction (Uni Students)", value: 19.24 }, { issue: "Problematic Eating (High School)", value: 23.8 }, { issue: "Risk of Depression (Teens)", value: 10.28 }, { issue: "Risk of Self-Harm (Teens)", value: 17.4 } ];
 
             // Get CSS variables
             const primaryColor = "#8a4baf";
@@ -793,28 +891,28 @@
             const accentColor = "#ff99cc";
             
             // --- D3 CHART DRAWING FUNCTIONS ---
-            const drawPieChart = (selector, data) => {
+            const drawDonutChart = (selector, data) => {
                 const container = d3.select(selector);
                 if (container.empty()) return;
                 container.html("");
 
                 const width = 450, height = 380, margin = 20;
-                const radius = Math.min(width, height) / 2 - margin - 40; // Adjust radius for labels
+                const radius = Math.min(width, height) / 2 - margin - 40;
 
                 const svg = container.append("svg")
                     .attr("width", width)
                     .attr("height", height)
                     .append("g")
-                    .attr("transform", `translate(${width / 2 - 50}, ${height / 2})`); // Move pie to left for legend
+                    .attr("transform", `translate(${width / 2 - 50}, ${height / 2})`);
 
                 const color = d3.scaleOrdinal()
                     .domain(data.map(d => d.category))
-                    .range([primaryColor, accentColor, secondaryColor]);
+                    .range([primaryColor, accentColor, secondaryColor, '#a06ab4']);
 
                 const pie = d3.pie().value(d => d.value).sort(null);
                 const data_ready = pie(data);
 
-                const arc = d3.arc().innerRadius(0).outerRadius(radius);
+                const arc = d3.arc().innerRadius(radius * 0.5).outerRadius(radius);
 
                 svg.selectAll('path')
                     .data(data_ready)
@@ -831,22 +929,18 @@
                         return function(t) { return arc(i(t)); };
                     });
                 
-                // Add labels inside slices
-                svg.selectAll('text.pie-label')
-                    .data(data_ready)
-                    .join('text')
-                    .attr('class', 'chart-label pie-label')
-                    .attr('transform', d => `translate(${arc.centroid(d)})`)
-                    .attr('text-anchor', 'middle')
-                    .text(d => `${d.data.value}%`)
-                    .style('text-shadow', '0 0 4px #000, 0 0 4px #000') // Add shadow for contrast
-                    .style('opacity', 0)
-                    .transition()
-                    .duration(1000)
-                    .delay(1000)
-                    .style('opacity', 1);
+                svg.selectAll('path')
+                    .on("mouseover", function(event, d) {
+                        d3.select("#tooltip")
+                            .style("opacity", 1)
+                            .html(`<strong>${d.data.category}</strong><br>${d.data.value}%`)
+                            .style("left", (event.pageX + 10) + "px")
+                            .style("top", (event.pageY - 28) + "px");
+                    })
+                    .on("mouseout", function() {
+                        d3.select("#tooltip").style("opacity", 0);
+                    });
 
-                // Add legend
                 const legend = svg.selectAll(".legend")
                     .data(data_ready)
                     .enter()
@@ -957,11 +1051,25 @@
 
 
             // --- INITIALIZE CHARTS AND EVENT LISTENERS ---
-            initChartOnScroll('#whitening-pie-chart', drawPieChart, whiteningData);
-            initChartOnScroll('#dissatisfaction-pie-chart', drawPieChart, dissatisfactionData);
-            initChartOnScroll('#filter-pie-chart', drawPieChart, filterData);
-            initChartOnScroll('#esteem-pie-chart', drawPieChart, esteemData);
+            initChartOnScroll('#whitening-pie-chart', drawDonutChart, whiteningData);
+            initChartOnScroll('#dissatisfaction-pie-chart', drawDonutChart, dissatisfactionData);
+            initChartOnScroll('#filter-pie-chart', drawDonutChart, filterData);
+            initChartOnScroll('#esteem-pie-chart', drawDonutChart, esteemData);
+            initChartOnScroll('#global-market-chart', drawDonutChart, globalMarketData);
+            initChartOnScroll('#thailand-market-chart', drawDonutChart, thailandMarketData);
             initChartOnScroll('#impact-bar-chart', drawBarChart, impactBarData);
+            
+            // Add tooltip div
+            d3.select("body").append("div")
+                .attr("id", "tooltip")
+                .style("position", "absolute")
+                .style("opacity", 0)
+                .style("background", "var(--dark)")
+                .style("border", "1px solid var(--primary)")
+                .style("border-radius", "8px")
+                .style("padding", "10px")
+                .style("color", "white")
+                .style("pointer-events", "none");
 
             // Smooth scrolling
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
